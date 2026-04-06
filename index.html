@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>제일 과학학원 실장</title>
+  <title>제일학원 고등과학</title>
   <style>
     * { box-sizing: border-box; margin: 0; padding: 0; }
     body {
@@ -14,96 +14,109 @@
       align-items: center; justify-content: center;
       padding: 32px 20px;
     }
-    .header { text-align: center; margin-bottom: 36px; }
-    .logo { font-size: 52px; margin-bottom: 12px; }
-    .title { color: #fff; font-size: 22px; font-weight: 900; letter-spacing: -0.5px; }
-    .subtitle { color: rgba(255,255,255,0.35); font-size: 12px; font-weight: 600; margin-top: 6px; }
+    .header { text-align: center; margin-bottom: 32px; }
+    .logo { font-size: 48px; margin-bottom: 10px; }
+    .title { color: #fff; font-size: 22px; font-weight: 900; }
+    .subtitle { color: rgba(255,255,255,0.35); font-size: 12px; font-weight: 600; margin-top: 5px; }
 
+    .section { width: 100%; max-width: 480px; margin-bottom: 24px; }
+    .section-label {
+      color: rgba(255,255,255,0.4);
+      font-size: 11px;
+      font-weight: 900;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      margin-bottom: 10px;
+      padding-left: 4px;
+    }
     .grid {
       display: grid;
       grid-template-columns: repeat(2, 1fr);
-      gap: 14px;
-      width: 100%;
-      max-width: 480px;
+      gap: 12px;
     }
+    .grid-3 { grid-template-columns: repeat(3, 1fr); }
 
     .card {
       display: block;
       text-decoration: none;
-      border-radius: 22px;
+      border-radius: 20px;
       overflow: hidden;
-      box-shadow: 0 8px 30px rgba(0,0,0,0.35);
-      transition: transform 0.15s, box-shadow 0.15s;
+      box-shadow: 0 6px 24px rgba(0,0,0,0.3);
       -webkit-tap-highlight-color: transparent;
+      transition: transform 0.12s;
     }
-    .card:active { transform: scale(0.96); }
+    .card:active { transform: scale(0.95); }
 
     .card-inner {
-      padding: 22px 18px 20px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      min-height: 130px;
-      text-align: center;
-      gap: 8px;
+      padding: 18px 14px 16px;
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      min-height: 100px; text-align: center; gap: 6px;
     }
-
-    .card-emoji { font-size: 34px; }
-    .card-name { color: #fff; font-size: 15px; font-weight: 900; line-height: 1.2; }
+    .card-emoji { font-size: 28px; }
+    .card-name { color: #fff; font-size: 13px; font-weight: 900; line-height: 1.2; }
     .card-badge {
-      color: rgba(255,255,255,0.65);
-      font-size: 10px;
-      font-weight: 700;
+      color: rgba(255,255,255,0.6);
+      font-size: 10px; font-weight: 700;
       background: rgba(255,255,255,0.15);
-      padding: 3px 10px;
-      border-radius: 20px;
+      padding: 2px 8px; border-radius: 20px;
     }
 
     .c1 { background: linear-gradient(135deg, #3b82f6, #1d4ed8); }
-    .c2 { background: linear-gradient(135deg, #8b5cf6, #6d28d9); }
-    .c3 { background: linear-gradient(135deg, #6366f1, #4338ca); }
-    .c4 { background: linear-gradient(135deg, #14b8a6, #0f766e); }
-    .c5 { background: linear-gradient(135deg, #f59e0b, #d97706); }
-    .c6 { background: linear-gradient(135deg, #10b981, #059669); }
-    .c7 { background: linear-gradient(135deg, #ec4899, #db2777); }
+    .c2 { background: linear-gradient(135deg, #f59e0b, #d97706); }
+    .c3 { background: linear-gradient(135deg, #ec4899, #db2777); }
+    .c4 { background: linear-gradient(135deg, #8b5cf6, #6d28d9); }
+    .c5 { background: linear-gradient(135deg, #6366f1, #4338ca); }
+    .c6 { background: linear-gradient(135deg, #14b8a6, #0f766e); }
+    .c7 { background: linear-gradient(135deg, #10b981, #059669); }
 
-    .footer { margin-top: 28px; color: rgba(255,255,255,0.18); font-size: 11px; font-weight: 600; }
+    .footer { margin-top: 8px; color: rgba(255,255,255,0.15); font-size: 11px; font-weight: 600; }
 
-    @media (max-width: 380px) {
-      .card-inner { min-height: 110px; padding: 18px 14px; }
-      .card-emoji { font-size: 28px; }
-      .card-name { font-size: 13px; }
+    @media (max-width: 360px) {
+      .card-inner { min-height: 88px; padding: 14px 10px; }
+      .card-emoji { font-size: 24px; }
+      .card-name { font-size: 12px; }
     }
   </style>
 </head>
 <body>
   <div class="header">
     <div class="logo">🏫</div>
-    <div class="title">제일 과학학원</div>
+    <div class="title">제일학원 고등과학</div>
     <div class="subtitle">반을 선택하세요</div>
   </div>
 
-  <div class="grid" id="grid"></div>
+  <div class="section">
+    <div class="section-label">🎓 고2</div>
+    <div class="grid grid-3" id="grid-g2"></div>
+  </div>
 
-  <div class="footer">실장용 · Jeil Science Academy</div>
+  <div class="section">
+    <div class="section-label">📘 고1</div>
+    <div class="grid" id="grid-g1"></div>
+  </div>
+
+  <div class="footer">제일학원 고등과학 · 실장용</div>
 
   <script>
-    const CLASSES = [
-      { name: '물리학반',   emoji: '⚛️', color: 'c1', base: 'https://llllddd5162.github.io/Jeil-science-Physics/',        code: '71207179' },
-      { name: '무학해성반', emoji: '🔬', color: 'c2', base: 'https://llllddd5162.github.io/Jeil-science-MuhakHaeseong1/', code: '71207179' },
-      { name: '도선경일반', emoji: '📐', color: 'c3', base: 'https://llllddd5162.github.io/Jeil-science-DosunKyungil1/',  code: '71207179' },
-      { name: '성동1S반',   emoji: '🌟', color: 'c4', base: 'https://llllddd5162.github.io/Jeil-science-Seongdong1S/',    code: '71207179' },
-      { name: '화학반',     emoji: '🧪', color: 'c5', base: 'https://llllddd5162.github.io/Jeil-science-Chem/',           code: 'arthun0709' },
-      { name: '성동1H반',   emoji: '📚', color: 'c6', base: 'https://llllddd5162.github.io/Jeil-science-Seongdong1H/',    code: '01031107' },
-      { name: '생명과학반', emoji: '🧬', color: 'c7', base: 'https://llllddd5162.github.io/Jeil-science-Biology/',        code: 'shapekim02' },
+    // ⚠️ 물리학반 404 오류: GitHub 계정명 URL을 정확히 수정해주세요
+    const BASE = 'https://lllllddd5162.github.io'; // ← 여기 계정명 확인 필요
+
+    const G2 = [
+      { name: '물리학반',   emoji: '⚛️', color: 'c1', path: '/Jeil-science-Physics/',   code: '26350'  },
+      { name: '화학반',     emoji: '🧪', color: 'c2', path: '/Jeil-science-Chem/',      code: '26350' },
+      { name: '생명과학반', emoji: '🧬', color: 'c3', path: '/Jeil-science-Biology/',   code: '26350' },
+    ];
+    const G1 = [
+      { name: '무학해성반', emoji: '🔬', color: 'c4', path: '/Jeil-science-MuhakHaeseong1/', code: '26350' },
+      { name: '도선경일반', emoji: '📐', color: 'c5', path: '/Jeil-science-DosunKyungil1/',  code: '26350' },
+      { name: '성동1S반',   emoji: '🌟', color: 'c6', path: '/Jeil-science-Seongdong1S/',    code: '26350' },
+      { name: '성동1H반',   emoji: '📚', color: 'c7', path: '/Jeil-science-Seongdong1H/',    code: '26350' },
     ];
 
-    const grid = document.getElementById('grid');
-    CLASSES.forEach(cls => {
+    function makeCard(cls) {
       const a = document.createElement('a');
-      // URL에 마스터 코드 포함 → 클릭만 하면 자동 로그인
-      a.href = `${cls.base}?code=${cls.code}`;
+      a.href = `${BASE}${cls.path}?code=${cls.code}`;
       a.target = '_blank';
       a.rel = 'noopener noreferrer';
       a.className = 'card';
@@ -112,10 +125,12 @@
           <div class="card-emoji">${cls.emoji}</div>
           <div class="card-name">${cls.name}</div>
           <div class="card-badge">바로 접속 →</div>
-        </div>
-      `;
-      grid.appendChild(a);
-    });
+        </div>`;
+      return a;
+    }
+
+    G2.forEach(c => document.getElementById('grid-g2').appendChild(makeCard(c)));
+    G1.forEach(c => document.getElementById('grid-g1').appendChild(makeCard(c)));
   </script>
 </body>
 </html>

@@ -101,6 +101,16 @@
     .notif-title { font-size: 13px; font-weight: 900; color: #f1f5f9; margin-bottom: 2px; }
     .notif-desc { font-size: 11px; color: rgba(255,255,255,0.4); font-weight: 600; }
     .notif-empty { padding: 32px 18px; text-align: center; color: rgba(255,255,255,0.2); font-size: 13px; font-weight: 700; }
+    .notif-link {
+      display: inline-block; margin-top: 6px;
+      font-size: 11px; font-weight: 900;
+      color: #818cf8; text-decoration: none;
+      background: rgba(99,102,241,0.15);
+      padding: 3px 10px; border-radius: 20px;
+      border: 1px solid rgba(99,102,241,0.3);
+      transition: background 0.1s;
+    }
+    .notif-link:hover { background: rgba(99,102,241,0.3); }
 
     @media (max-width: 380px) {
       .grid-5 { grid-template-columns: repeat(3, 1fr); }
@@ -212,6 +222,7 @@
           + '<div class="notif-class">' + n.className + '</div>'
           + '<div class="notif-title">📝 ' + n.testTitle + '</div>'
           + '<div class="notif-desc">' + n.desc + '</div>'
+          + '<a class="notif-link" href="' + n.url + '" target="_blank" onclick="event.stopPropagation()">성적표 바로가기 →</a>'
           + '</div>';
       }).join('');
       list.querySelectorAll('.notif-item').forEach(function(el) {
@@ -286,6 +297,7 @@
             className: cls.name,
             testTitle: t.title,
             desc: avg ? ('전체 ' + targets.length + '명 완료 · 평균 ' + avg + '점') : ('전체 ' + targets.length + '명 완료'),
+            url: BASE + cls.path + '?code=' + CODE,
           });
           renderNotifs();
         });

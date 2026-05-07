@@ -18,64 +18,93 @@
     .logo { font-size: 48px; margin-bottom: 10px; }
     .title { color: #fff; font-size: 22px; font-weight: 900; }
     .subtitle { color: rgba(255,255,255,0.35); font-size: 12px; font-weight: 600; margin-top: 5px; }
-
-    .section { width: 100%; max-width: 480px; margin-bottom: 24px; }
+    .section { width: 100%; max-width: 500px; margin-bottom: 24px; }
     .section-label {
-      color: rgba(255,255,255,0.4);
-      font-size: 11px;
-      font-weight: 900;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      margin-bottom: 10px;
-      padding-left: 4px;
+      color: rgba(255,255,255,0.4); font-size: 11px; font-weight: 900;
+      letter-spacing: 0.12em; text-transform: uppercase;
+      margin-bottom: 10px; padding-left: 4px;
     }
-    .grid {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 12px;
-    }
+    .grid { display: grid; gap: 12px; }
     .grid-3 { grid-template-columns: repeat(3, 1fr); }
-
+    .grid-5 { grid-template-columns: repeat(5, 1fr); }
     .card {
-      display: block;
-      text-decoration: none;
-      border-radius: 20px;
-      overflow: hidden;
+      display: block; text-decoration: none;
+      border-radius: 20px; overflow: hidden;
       box-shadow: 0 6px 24px rgba(0,0,0,0.3);
       -webkit-tap-highlight-color: transparent;
       transition: transform 0.12s;
     }
     .card:active { transform: scale(0.95); }
-
     .card-inner {
-      padding: 18px 14px 16px;
+      padding: 18px 10px 16px;
       display: flex; flex-direction: column;
       align-items: center; justify-content: center;
-      min-height: 100px; text-align: center; gap: 6px;
+      min-height: 95px; text-align: center; gap: 5px;
     }
-    .card-emoji { font-size: 28px; }
-    .card-name { color: #fff; font-size: 13px; font-weight: 900; line-height: 1.2; }
+    .card-emoji { font-size: 24px; }
+    .card-name { color: #fff; font-size: 11px; font-weight: 900; line-height: 1.2; }
     .card-badge {
-      color: rgba(255,255,255,0.6);
-      font-size: 10px; font-weight: 700;
-      background: rgba(255,255,255,0.15);
-      padding: 2px 8px; border-radius: 20px;
+      color: rgba(255,255,255,0.6); font-size: 9px; font-weight: 700;
+      background: rgba(255,255,255,0.15); padding: 2px 7px; border-radius: 20px;
     }
-
     .c1 { background: linear-gradient(135deg, #3b82f6, #1d4ed8); }
     .c2 { background: linear-gradient(135deg, #f59e0b, #d97706); }
     .c3 { background: linear-gradient(135deg, #ec4899, #db2777); }
     .c4 { background: linear-gradient(135deg, #8b5cf6, #6d28d9); }
     .c5 { background: linear-gradient(135deg, #6366f1, #4338ca); }
-    .c6 { background: linear-gradient(135deg, #14b8a6, #0f766e); }
-    .c7 { background: linear-gradient(135deg, #10b981, #059669); }
-
+    .c6 { background: linear-gradient(135deg, #0ea5e9, #0284c7); }
+    .c7 { background: linear-gradient(135deg, #14b8a6, #0f766e); }
+    .c8 { background: linear-gradient(135deg, #10b981, #059669); }
     .footer { margin-top: 8px; color: rgba(255,255,255,0.15); font-size: 11px; font-weight: 600; }
 
-    @media (max-width: 360px) {
-      .card-inner { min-height: 88px; padding: 14px 10px; }
-      .card-emoji { font-size: 24px; }
-      .card-name { font-size: 12px; }
+    #notif-btn {
+      position: fixed; bottom: 24px; right: 24px;
+      width: 56px; height: 56px; border-radius: 50%;
+      background: linear-gradient(135deg, #6366f1, #4338ca);
+      box-shadow: 0 8px 24px rgba(99,102,241,0.5);
+      border: none; cursor: pointer;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 24px; z-index: 50;
+      -webkit-tap-highlight-color: transparent;
+      transition: transform 0.15s;
+    }
+    #notif-btn:active { transform: scale(0.92); }
+    #notif-badge {
+      position: absolute; top: -4px; right: -4px;
+      background: #ef4444; color: #fff;
+      font-size: 10px; font-weight: 900;
+      min-width: 18px; height: 18px;
+      border-radius: 9px; padding: 0 4px;
+      display: none; align-items: center; justify-content: center;
+      border: 2px solid #0f172a;
+    }
+    #notif-panel {
+      position: fixed; bottom: 90px; right: 24px;
+      width: 320px; max-height: 460px;
+      background: #1e293b; border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 20px; box-shadow: 0 20px 60px rgba(0,0,0,0.6);
+      display: none; flex-direction: column;
+      overflow: hidden; z-index: 100;
+    }
+    #notif-panel.open { display: flex; }
+    .notif-header {
+      padding: 16px 18px 12px;
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+      display: flex; justify-content: space-between; align-items: center;
+    }
+    .notif-header h3 { color: #fff; font-size: 14px; font-weight: 900; }
+    .notif-clear { color: rgba(255,255,255,0.3); font-size: 11px; font-weight: 700; background: none; border: none; cursor: pointer; }
+    #notif-list { overflow-y: auto; flex: 1; padding: 8px 0; }
+    .notif-item { padding: 12px 18px; border-bottom: 1px solid rgba(255,255,255,0.05); cursor: pointer; }
+    .notif-item.unread { border-left: 3px solid #6366f1; }
+    .notif-class { font-size: 10px; font-weight: 900; color: #818cf8; margin-bottom: 3px; }
+    .notif-title { font-size: 13px; font-weight: 900; color: #f1f5f9; margin-bottom: 2px; }
+    .notif-desc { font-size: 11px; color: rgba(255,255,255,0.4); font-weight: 600; }
+    .notif-empty { padding: 32px 18px; text-align: center; color: rgba(255,255,255,0.2); font-size: 13px; font-weight: 700; }
+
+    @media (max-width: 380px) {
+      .grid-5 { grid-template-columns: repeat(3, 1fr); }
+      #notif-panel { width: calc(100vw - 32px); right: 16px; }
     }
   </style>
 </head>
@@ -85,52 +114,186 @@
     <div class="title">제일학원 고등과학</div>
     <div class="subtitle">반을 선택하세요</div>
   </div>
-
   <div class="section">
     <div class="section-label">🎓 고2</div>
     <div class="grid grid-3" id="grid-g2"></div>
   </div>
-
   <div class="section">
     <div class="section-label">📘 고1</div>
-    <div class="grid" id="grid-g1"></div>
+    <div class="grid grid-5" id="grid-g1"></div>
   </div>
-
   <div class="footer">제일학원 고등과학 · 실장용</div>
 
+  <button id="notif-btn">
+    🔔<span id="notif-badge">0</span>
+  </button>
+  <div id="notif-panel">
+    <div class="notif-header">
+      <h3>🔔 시험 성적 알림</h3>
+      <button class="notif-clear" id="clear-btn">모두 읽음</button>
+    </div>
+    <div id="notif-list"><div class="notif-empty">알림이 없습니다</div></div>
+  </div>
+
+  <!-- Firebase (CDN, non-module) -->
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
   <script>
-    // ⚠️ 물리학반 404 오류: GitHub 계정명 URL을 정확히 수정해주세요
-    const BASE = 'https://lllllddd5162.github.io'; // ← 여기 계정명 확인 필요
+    // Firebase 초기화
+    firebase.initializeApp({
+      apiKey: "AIzaSyBaWWriu3X7iVQnglR5XcA0Mqqc736VopM",
+      authDomain: "science-academy-13dda.firebaseapp.com",
+      projectId: "science-academy-13dda",
+      storageBucket: "science-academy-13dda.firebasestorage.app",
+      messagingSenderId: "449626746191",
+      appId: "1:449626746191:web:73885c6bb862a07655293a"
+    });
+    const db = firebase.firestore();
 
-    const G2 = [
-      { name: '물리학반',   emoji: '⚛️', color: 'c1', path: '/Jeil-science-Physics/',   code: '26350'  },
-      { name: '화학반',     emoji: '🧪', color: 'c2', path: '/Jeil-science-Chem/',      code: '26350' },
-      { name: '생명과학반', emoji: '🧬', color: 'c3', path: '/Jeil-science-Biology/',   code: '26350' },
-    ];
-    const G1 = [
-      { name: '무학해성반', emoji: '🔬', color: 'c4', path: '/Jeil-science-MuhakHaeseong1/', code: '26350' },
-      { name: '도선경일반', emoji: '📐', color: 'c5', path: '/Jeil-science-DosunKyungil1/',  code: '26350' },
-      { name: '성동1S반',   emoji: '🌟', color: 'c6', path: '/Jeil-science-Seongdong1S/',    code: '26350' },
-      { name: '성동1H반',   emoji: '📚', color: 'c7', path: '/Jeil-science-Seongdong1H/',    code: '26350' },
+    const BASE = 'https://lllllddd5162.github.io';
+    const CODE = '26350';
+
+    const CLASSES = [
+      { id: 'Jeil-science-Physics',     name: '물리학반',   emoji: '⚛️', color: 'c1', path: '/Jeil-science-Physics/'    },
+      { id: 'Jeil-science-Chem',        name: '화학반',     emoji: '🧪', color: 'c2', path: '/Jeil-science-Chem/'       },
+      { id: 'Jeil-science-Biology',     name: '생명과학반', emoji: '🧬', color: 'c3', path: '/Jeil-science-Biology/'    },
+      { id: 'Jeil-science-Kyungil',     name: '경일반',     emoji: '📏', color: 'c4', path: '/Jeil-science-Kyungil/'    },
+      { id: 'Jeil-science-Dosun1',      name: '도선반',     emoji: '📐', color: 'c5', path: '/Jeil-science-Dosun1/'     },
+      { id: 'Jeil-science-Muhak',       name: '무학반',     emoji: '🔬', color: 'c6', path: '/Jeil-science-Muhak/'      },
+      { id: 'Jeil-science-Seongdong1S', name: '성동1S반',   emoji: '🌟', color: 'c7', path: '/Jeil-science-Seongdong1S/'},
+      { id: 'Jeil-science-Seongdong1H', name: '성동1H반',   emoji: '📚', color: 'c8', path: '/Jeil-science-Seongdong1H/'},
     ];
 
+    // 카드 렌더링
     function makeCard(cls) {
       const a = document.createElement('a');
-      a.href = `${BASE}${cls.path}?code=${cls.code}`;
-      a.target = '_blank';
-      a.rel = 'noopener noreferrer';
+      a.href = BASE + cls.path + '?code=' + CODE;
+      a.target = '_blank'; a.rel = 'noopener noreferrer';
       a.className = 'card';
-      a.innerHTML = `
-        <div class="card-inner ${cls.color}">
-          <div class="card-emoji">${cls.emoji}</div>
-          <div class="card-name">${cls.name}</div>
-          <div class="card-badge">바로 접속 →</div>
-        </div>`;
+      a.innerHTML = '<div class="card-inner ' + cls.color + '">'
+        + '<div class="card-emoji">' + cls.emoji + '</div>'
+        + '<div class="card-name">' + cls.name + '</div>'
+        + '<div class="card-badge">접속 →</div></div>';
       return a;
     }
+    CLASSES.slice(0,3).forEach(c => document.getElementById('grid-g2').appendChild(makeCard(c)));
+    CLASSES.slice(3).forEach(c => document.getElementById('grid-g1').appendChild(makeCard(c)));
 
-    G2.forEach(c => document.getElementById('grid-g2').appendChild(makeCard(c)));
-    G1.forEach(c => document.getElementById('grid-g1').appendChild(makeCard(c)));
+    // 알림
+    const STORAGE_KEY = 'jeil_notif_seen_v2';
+    var notifications = [];
+
+    function getSeenIds() {
+      try { return JSON.parse(localStorage.getItem(STORAGE_KEY) || '[]'); } catch(e) { return []; }
+    }
+    function addSeenId(id) {
+      var seen = getSeenIds();
+      if (seen.indexOf(id) === -1) { seen.push(id); localStorage.setItem(STORAGE_KEY, JSON.stringify(seen)); }
+    }
+
+    function renderNotifs() {
+      var seen = getSeenIds();
+      var unread = notifications.filter(function(n){ return seen.indexOf(n.id) === -1; }).length;
+      var badge = document.getElementById('notif-badge');
+      if (unread > 0) {
+        badge.style.display = 'flex';
+        badge.textContent = unread > 99 ? '99+' : unread;
+      } else {
+        badge.style.display = 'none';
+      }
+      var list = document.getElementById('notif-list');
+      if (notifications.length === 0) {
+        list.innerHTML = '<div class="notif-empty">알림이 없습니다</div>';
+        return;
+      }
+      list.innerHTML = notifications.map(function(n) {
+        var isUnread = seen.indexOf(n.id) === -1;
+        return '<div class="notif-item ' + (isUnread ? 'unread' : '') + '" data-id="' + n.id + '">'
+          + '<div class="notif-class">' + n.className + '</div>'
+          + '<div class="notif-title">📝 ' + n.testTitle + '</div>'
+          + '<div class="notif-desc">' + n.desc + '</div>'
+          + '</div>';
+      }).join('');
+      list.querySelectorAll('.notif-item').forEach(function(el) {
+        el.addEventListener('click', function() {
+          addSeenId(el.dataset.id);
+          renderNotifs();
+        });
+      });
+    }
+
+    document.getElementById('notif-btn').addEventListener('click', function(e) {
+      e.stopPropagation();
+      document.getElementById('notif-panel').classList.toggle('open');
+    });
+    document.getElementById('clear-btn').addEventListener('click', function() {
+      notifications.forEach(function(n){ addSeenId(n.id); });
+      renderNotifs();
+    });
+    document.addEventListener('click', function(e) {
+      var panel = document.getElementById('notif-panel');
+      if (!panel.contains(e.target) && e.target.id !== 'notif-btn') {
+        panel.classList.remove('open');
+      }
+    });
+
+    // 각 반 시험 감시
+    function watchClass(cls) {
+      var basePath = 'artifacts/' + cls.id + '/public/data';
+      var students = [];
+      var scores = {};
+      var tests = [];
+
+      db.collection(basePath + '/students').get().then(function(snap) {
+        students = snap.docs.map(function(d){ return { id: d.id, name: d.data().name }; });
+        if (students.length === 0) return;
+
+        db.collection(basePath + '/testScores').onSnapshot(function(snap) {
+          snap.docs.forEach(function(d){ scores[d.id] = d.data(); });
+          checkNotifs();
+        });
+
+        db.collection(basePath + '/tests').onSnapshot(function(snap) {
+          tests = snap.docs.map(function(d){ return { id: d.id, ...d.data() }; });
+          checkNotifs();
+        });
+      });
+
+      function checkNotifs() {
+        if (!students.length || !tests.length) return;
+        tests.forEach(function(t) {
+          var targets = students.filter(function(s) {
+            var res = scores[s.id + '-' + t.id] || {};
+            return res.absent !== 'excluded';
+          });
+          if (!targets.length) return;
+
+          var allFilled = targets.every(function(s) {
+            var res = scores[s.id + '-' + t.id] || {};
+            return res.absent === 'absent' || (res.score !== null && res.score !== undefined);
+          });
+          if (!allFilled) return;
+
+          var notifId = cls.id + '-' + t.id;
+          var existing = notifications.find(function(n){ return n.id === notifId; });
+          if (existing) return;
+
+          var avgScores = targets.map(function(s){ return scores[s.id+'-'+t.id]&&scores[s.id+'-'+t.id].score; }).filter(function(v){ return v!=null; });
+          var avg = avgScores.length ? (avgScores.reduce(function(a,b){return a+b},0)/avgScores.length).toFixed(1) : null;
+
+          notifications.unshift({
+            id: notifId,
+            className: cls.name,
+            testTitle: t.title,
+            desc: avg ? ('전체 ' + targets.length + '명 완료 · 평균 ' + avg + '점') : ('전체 ' + targets.length + '명 완료'),
+          });
+          renderNotifs();
+        });
+      }
+    }
+
+    CLASSES.forEach(watchClass);
+    renderNotifs();
   </script>
 </body>
 </html>

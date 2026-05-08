@@ -55,6 +55,8 @@
     .c6 { background: linear-gradient(135deg, #0ea5e9, #0284c7); }
     .c7 { background: linear-gradient(135deg, #14b8a6, #0f766e); }
     .c8 { background: linear-gradient(135deg, #10b981, #059669); }
+    .c9 { background: linear-gradient(135deg, #f43f5e, #e11d48); }
+    .c9 { background: linear-gradient(135deg, #f43f5e, #e11d48); }
     .footer { margin-top: 8px; color: rgba(255,255,255,0.15); font-size: 11px; font-weight: 600; }
 
     #notif-btn {
@@ -130,7 +132,7 @@
   </div>
   <div class="section">
     <div class="section-label">📘 고1</div>
-    <div class="grid grid-5" id="grid-g1"></div>
+    <div class="grid grid-3" id="grid-g1"></div>
   </div>
   <div class="footer">제일학원 고등과학 · 실장용</div>
 
@@ -172,12 +174,14 @@
       { id: 'Jeil-science-Muhak',       name: '무학반',     emoji: '🔬', color: 'c6', path: '/Jeil-science-Muhak/'      },
       { id: 'Jeil-science-Seongdong1S', name: '성동1S반',   emoji: '🌟', color: 'c7', path: '/Jeil-science-Seongdong1S/'},
       { id: 'Jeil-science-Seongdong1H', name: '성동1H반',   emoji: '📚', color: 'c8', path: '/Jeil-science-Seongdong1H/'},
+      { id: 'kimdongwhui', name: '김동휘T반', emoji: '👨‍🏫', color: 'c9', path: null, url: 'https://dmstrkindstrs.github.io/jeilaca/'},
     ];
 
     // 카드 렌더링
     function makeCard(cls) {
       const a = document.createElement('a');
-      a.href = BASE + cls.path + '?code=' + CODE;
+      // 외부 URL이 있으면 그대로, 없으면 기본 경로+코드
+      a.href = cls.url ? cls.url : BASE + cls.path + '?code=' + CODE;
       a.target = '_blank'; a.rel = 'noopener noreferrer';
       a.className = 'card';
       a.innerHTML = '<div class="card-inner ' + cls.color + '">'
@@ -297,7 +301,7 @@
             className: cls.name,
             testTitle: t.title,
             desc: avg ? ('전체 ' + targets.length + '명 완료 · 평균 ' + avg + '점') : ('전체 ' + targets.length + '명 완료'),
-            url: BASE + cls.path + '?code=' + CODE,
+            url: BASE + cls.path + '?code=' + CODE + '&tab=tests',
           });
           renderNotifs();
         });
